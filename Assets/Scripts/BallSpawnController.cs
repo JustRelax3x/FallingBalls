@@ -25,7 +25,7 @@ public class BallSpawnController
         _ballPool = ballPool;
         _particleLimitedPool = particleLimitedPool;
         Rect rect = canvas.GetComponent<RectTransform>().rect;
-        _halfHeightCanvas = rect.yMax;
+        _halfHeightCanvas = rect.yMax * 1.33f;
         _halfWidthCanvas = rect.xMax / 2f;
         _ballColors = colors;
         _isSpawning = false;
