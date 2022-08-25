@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour
     private Image _ballImage;
 
     private float _speed = 1f;
+    private const float TargetPositionY = -1000f;
     private bool _isFalling = true;
 
     public event System.Action<Ball> BallClicked;
@@ -25,10 +26,14 @@ public class Ball : MonoBehaviour
         _isFalling = true;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (_isFalling)
-        transform.Translate(0f, -_speed * Time.deltaTime, 0f, Space.World);
+        if (_isFalling) {
+            //transform.Translate(0f, -_speed * Time.deltaTime, 0f, Space.World);
+            //transform.position -= transform.up * _speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position,
+              new Vector3(transform.position.x, TargetPositionY, transform.position.z), _speed * Time.deltaTime);
+        }
     }
 
     private void OnMouseDown()
